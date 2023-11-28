@@ -1,14 +1,17 @@
 package com.example.cheesefinderapp.ui.cheeselist
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cheesefinderapp.R
 import com.example.cheesefinderapp.model.Cheese
 
-class CheeseListAdapter (private var cheeseCollection: ArrayList<Cheese>) : RecyclerView.Adapter<CheeseListViewHolder>()  {
+class CheeseListAdapter(private var cheeseCollection: ArrayList<Cheese>) :
+
+    RecyclerView.Adapter<CheeseListViewHolder>() {
+
+    private var originalCheeseList: ArrayList<Cheese> = ArrayList(cheeseCollection)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheeseListViewHolder {
         val raw = LayoutInflater.from(parent.context).inflate(R.layout.raw_cheese, parent, false)
         return CheeseListViewHolder(raw)
@@ -18,7 +21,18 @@ class CheeseListAdapter (private var cheeseCollection: ArrayList<Cheese>) : Recy
         return this.cheeseCollection.size
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    fun restoreData() {
+        cheeseCollection.clear()
+        cheeseCollection.addAll(originalCheeseList)
+        notifyDataSetChanged()
+    }
+
+    fun updateData(newList: ArrayList<Cheese>) {
+        cheeseCollection.clear()
+        cheeseCollection.addAll(newList)
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: CheeseListViewHolder, position: Int) {
         val (departement, fromage) = this.cheeseCollection[position]
         val laitString = this.cheeseCollection[position].lait.joinToString(", ")

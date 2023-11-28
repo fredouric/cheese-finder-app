@@ -1,6 +1,8 @@
 package com.example.cheesefinderapp.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.cheesefinderapp.R
@@ -22,6 +24,7 @@ const val SERVER_BASE_URL = "https://cheese-epg-fts.cleverapps.io"
 class MainActivity : AppCompatActivity() {
 
     private val cheeseCollection = CheeseCollection()
+    private lateinit var cheeseListFragment: CheeseListFragment
     private lateinit var cheeseService: CheeseService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +45,9 @@ class MainActivity : AppCompatActivity() {
                         val cheese = Cheese(it.departement, it.fromage, it.lait, it.geo_point_2d)
                         cheeseCollection.addCheese(cheese)
                     }
-                    loadFragment(CheeseListFragment.newInstance(cheeseCollection.getArrayList()))
+                    cheeseListFragment =
+                        CheeseListFragment.newInstance(cheeseCollection.getArrayList())
+                    loadFragment(cheeseListFragment)
                 }
 
                 override fun onFailure(call: Call<List<Cheese>>, t: Throwable) {
@@ -50,6 +55,31 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
+        setBottomNavigationBar()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_navigation_menu, menu)
+        val searchItem = menu.findItem(R.id.app_bar_search)
+        val searchView = searchItem?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                cheeseListFragment.filterData(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                cheeseListFragment.filterData(newText)
+                return true
+            }
+
+        })
+
+        return true
+    }
+
+    private fun setBottomNavigationBar() {
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.am_navigation_bar)
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -70,10 +100,8 @@ class MainActivity : AppCompatActivity() {
 
                 else -> false
             }
-
         }
     }
-
 
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()

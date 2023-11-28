@@ -22,16 +22,18 @@ private const val ARG_CHEESE_COLLECTION = "param_cheese_collection"
 class CheeseListFragment : Fragment() {
 
     private var cheeseCollection: ArrayList<Cheese>? = null
-    private lateinit var recyclerView : RecyclerView
+    private var filteredCheeseCollection: ArrayList<Cheese>? = null
+    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CheeseListAdapter
-    private lateinit var layoutManager : RecyclerView.LayoutManager
+    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        arguments?.let{
-            cheeseCollection = arguments?.getSerializable(ARG_CHEESE_COLLECTION) as ArrayList<Cheese>
+        arguments?.let {
+            cheeseCollection =
+                arguments?.getSerializable(ARG_CHEESE_COLLECTION) as ArrayList<Cheese>
         }
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_cheese_list, container, false)
@@ -40,8 +42,23 @@ class CheeseListFragment : Fragment() {
         layoutManager = LinearLayoutManager(this.context)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+
         return rootView
     }
+
+    fun filterData(query: String) {
+        if (query.isEmpty()) {
+            adapter.restoreData()
+        } else {
+            filteredCheeseCollection = cheeseCollection?.filter {
+                it.fromage.contains(query, ignoreCase = true) ||
+                        it.departement.contains(query, ignoreCase = true)
+            } as ArrayList<Cheese>
+
+            adapter.updateData(filteredCheeseCollection!!)
+        }
+    }
+
     companion object {
         @JvmStatic
         fun newInstance(cheeseCollection: ArrayList<Cheese>) =
