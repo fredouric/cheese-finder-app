@@ -1,4 +1,4 @@
-package com.example.cheesefinderapp
+package com.example.cheesefinderapp.model
 
 open class CheeseCollection() {
     private val cheeseCollection : ArrayList<Cheese> = ArrayList()

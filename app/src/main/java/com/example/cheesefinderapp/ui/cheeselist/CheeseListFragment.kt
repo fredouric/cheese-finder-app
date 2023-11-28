@@ -1,4 +1,4 @@
-package com.example.cheesefinderapp
+package com.example.cheesefinderapp.ui.cheeselist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cheesefinderapp.R
+import com.example.cheesefinderapp.model.Cheese
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +23,7 @@ class CheeseListFragment : Fragment() {
 
     private var cheeseCollection: ArrayList<Cheese>? = null
     private lateinit var recyclerView : RecyclerView
-    private lateinit var adapter: CheeseAdapter
+    private lateinit var adapter: CheeseListAdapter
     private lateinit var layoutManager : RecyclerView.LayoutManager
 
     override fun onCreateView(
@@ -34,7 +36,7 @@ class CheeseListFragment : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_cheese_list, container, false)
         recyclerView = rootView.findViewById<RecyclerView>(R.id.fgt_cheese_list_view)
-        adapter = CheeseAdapter(cheeseCollection!!)
+        adapter = CheeseListAdapter(cheeseCollection!!)
         layoutManager = LinearLayoutManager(this.context)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

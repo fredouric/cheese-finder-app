@@ -1,4 +1,4 @@
-package com.example.cheesefinderapp
+package com.example.cheesefinderapp.model
 
 import java.io.Serializable
 

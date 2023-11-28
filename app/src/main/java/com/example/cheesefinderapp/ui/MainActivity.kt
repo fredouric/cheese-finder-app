@@ -1,7 +1,12 @@
-package com.example.cheesefinderapp
+package com.example.cheesefinderapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cheesefinderapp.data.services.CheeseService
+import com.example.cheesefinderapp.R
+import com.example.cheesefinderapp.model.Cheese
+import com.example.cheesefinderapp.model.CheeseCollection
+import com.example.cheesefinderapp.ui.cheeselist.CheeseListFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

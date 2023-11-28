@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheeseListFragment" >
+    tools:context=".ui.cheeselist.CheeseListFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fgt_cheese_list_view"

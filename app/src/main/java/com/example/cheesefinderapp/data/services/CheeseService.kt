@@ -1,5 +1,6 @@
-package com.example.cheesefinderapp
+package com.example.cheesefinderapp.data.services
 
+import com.example.cheesefinderapp.model.Cheese
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
