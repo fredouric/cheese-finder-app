@@ -1,0 +1,52 @@
+package com.example.cheesefinderapp
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_CHEESE_COLLECTION = "param_cheese_collection"
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [CheeseListFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class CheeseListFragment : Fragment() {
+
+    private var cheeseCollection: ArrayList<Cheese>? = null
+    private lateinit var recyclerView : RecyclerView
+    private lateinit var adapter: CheeseAdapter
+    private lateinit var layoutManager : RecyclerView.LayoutManager
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        arguments?.let{
+            cheeseCollection = arguments?.getSerializable(ARG_CHEESE_COLLECTION) as ArrayList<Cheese>
+        }
+        // Inflate the layout for this fragment
+        val rootView = inflater.inflate(R.layout.fragment_cheese_list, container, false)
+        recyclerView = rootView.findViewById<RecyclerView>(R.id.fgt_cheese_list_view)
+        adapter = CheeseAdapter(cheeseCollection!!)
+        layoutManager = LinearLayoutManager(this.context)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+        return rootView
+    }
+    companion object {
+        @JvmStatic
+        fun newInstance(cheeseCollection: ArrayList<Cheese>) =
+            CheeseListFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(ARG_CHEESE_COLLECTION, cheeseCollection)
+                }
+            }
+    }
+}
