@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_fragment_accueil"
-        android:title="Accueil" />
+        android:id="@+id/a_menu_item_home"
+        android:icon="@drawable/baseline_home_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/home_button" />
     <item
-        android:id="@+id/menu_fragment_map"
-        android:title="Map" />
+        android:id="@+id/a_menu_item_map"
+        android:icon="@drawable/baseline_map_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/map_button" />
     <item
-        android:id="@+id/menu_fragment_info"
-        android:title="Info" />
+        android:id="@+id/a_menu_item_about"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_info_24"
+        android:title="@string/about_button" />
 </menu>
