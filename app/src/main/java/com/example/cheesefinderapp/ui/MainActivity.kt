@@ -9,6 +9,7 @@ import com.example.cheesefinderapp.model.Cheese
 import com.example.cheesefinderapp.model.CheeseCollection
 import com.example.cheesefinderapp.ui.about.AboutFragment
 import com.example.cheesefinderapp.ui.cheeselist.CheeseListFragment
+import com.example.cheesefinderapp.ui.maps.MapsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.a_menu_item_map -> {
-                    // Handle map item click if needed
+                    loadFragment(MapsFragment())
                     true
                 }
 
