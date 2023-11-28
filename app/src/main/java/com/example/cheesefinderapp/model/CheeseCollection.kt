@@ -1,11 +1,7 @@
 package com.example.cheesefinderapp.model
 
-open class CheeseCollection() {
-    private val cheeseCollection : ArrayList<Cheese> = ArrayList()
-
-    fun getAllCheeses() : List<Cheese>{
-        return this.cheeseCollection.sortedBy { it.fromage }
-    }
+class CheeseCollection() {
+    private val cheeseCollection: ArrayList<Cheese> = ArrayList()
 
     fun addCheese(cheese: Cheese) {
         if (!this.cheeseCollection.contains(cheese))
