@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(SERVER_BASE_URL)
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.a_menu_item_map -> {
-                    loadFragment(MapsFragment())
+                    loadFragment(MapsFragment.newInstance(cheeseCollection.getArrayList()))
                     true
                 }
 
