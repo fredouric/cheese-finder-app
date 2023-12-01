@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.am_fragment_accueil, fragment)
+            .addToBackStack(null)
             .commit()
     }
 
