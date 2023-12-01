@@ -10,45 +10,54 @@
         android:id="@+id/aic_cheese_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#101848"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <TextView
         android:id="@+id/aic_cheese_department"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="department"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/aic_cheese_name"
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/aic_cheese_milk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="milk"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#283476"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/aic_cheese_department"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/aic_cheese_name"
+        app:layout_constraintVertical_bias="0.19999999" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/aic_home_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/baseline_home_24"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/aic_divider"
+        android:layout_width="409dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="24dp"
+        android:background="#3F51B5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintTop_toBottomOf="@+id/aic_cheese_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,9 +35,10 @@ class MapsFragment : Fragment() {
             val coordinates = LatLng(it.geo_point_2d.lat, it.geo_point_2d.lon)
             googleMap.addMarker(MarkerOptions().position(coordinates).title(it.fromage))
         }
+        val centreFrance = LatLng(46.606111, 1.875278)
+        googleMap.moveCamera(CameraUpdateFactory.zoomBy(3.25f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(centreFrance))
 
-        val paris = LatLng(48.854671438649895, 2.3442767774677895)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(paris))
     }
 
     override fun onCreateView(
