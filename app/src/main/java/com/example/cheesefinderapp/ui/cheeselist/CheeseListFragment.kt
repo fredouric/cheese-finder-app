@@ -65,7 +65,6 @@ class CheeseListFragment : Fragment() {
 
     fun filterDataLocally(query: String) {
         if (query.isEmpty()) {
-            //TODO : fix restore data function do avoid duplicating data
             adapter.restoreData()
         } else {
             filteredCheeseCollection = cheeseCollection?.filter {
