@@ -2,9 +2,7 @@ package com.example.cheesefinderapp.data.services
 
 import com.example.cheesefinderapp.model.Cheese
 import retrofit2.Call
-import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface CheeseService {
@@ -16,8 +14,5 @@ interface CheeseService {
 
     @GET("cheeses/search")
     fun searchCheese(@Query("fromage") fromage: String): Call<List<Cheese>>
-
-    @POST("cheeses")
-    fun addCheese(@Body cheese: Cheese): Call<Cheese>
 
 }
