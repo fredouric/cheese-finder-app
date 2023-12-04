@@ -8,7 +8,9 @@ import com.example.cheesefinderapp.model.Cheese
 
 class CheeseListAdapter(
     private var cheeseCollection: ArrayList<Cheese>,
-    private val onItemClick: (Cheese) -> Unit
+    private val onItemClick: (Cheese) -> Unit,
+    private val onActionButtonClick: (String) -> Unit
+
 ) :
 
     RecyclerView.Adapter<CheeseListViewHolder>() {
@@ -17,7 +19,7 @@ class CheeseListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheeseListViewHolder {
         val raw = LayoutInflater.from(parent.context).inflate(R.layout.raw_cheese, parent, false)
-        return CheeseListViewHolder(raw)
+        return CheeseListViewHolder(raw, onItemClick, onActionButtonClick)
     }
 
     override fun getItemCount(): Int {
@@ -48,5 +50,8 @@ class CheeseListAdapter(
             onItemClick(this.cheeseCollection[position])
         }
 
+        holder.favoriteActionButton.setOnClickListener {
+            onActionButtonClick(this.cheeseCollection[position].id)
+        }
     }
 }
