@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.cheesefinderapp.R
+import com.google.android.material.transition.MaterialFadeThrough
 
 /**
  * A simple [Fragment] subclass.
@@ -28,6 +29,7 @@ class AboutFragment : Fragment() {
 
         setInfoApp(rootView)
 
+        enterTransition = MaterialFadeThrough()
         return rootView
     }
 

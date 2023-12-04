@@ -13,6 +13,7 @@ import com.example.cheesefinderapp.model.Cheese
 import com.example.cheesefinderapp.model.pojo.UpdateCheeseRequest
 import com.example.cheesefinderapp.ui.InfoCheeseActivity
 import com.example.cheesefinderapp.ui.MainActivity
+import com.google.android.material.transition.MaterialFadeThrough
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,6 +59,7 @@ class CheeseListFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
+        exitTransition = MaterialFadeThrough()
         return rootView
     }
 

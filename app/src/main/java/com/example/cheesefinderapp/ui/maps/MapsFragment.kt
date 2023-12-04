@@ -12,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.transition.MaterialFadeThrough
 
 
 private const val ARG_CHEESE_COLLECTION = "param_cheese_collection"
@@ -41,6 +42,7 @@ class MapsFragment : Fragment() {
             cheeseCollection =
                 arguments?.getSerializable(ARG_CHEESE_COLLECTION) as ArrayList<Cheese>
         }
+        enterTransition = MaterialFadeThrough()
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
 
