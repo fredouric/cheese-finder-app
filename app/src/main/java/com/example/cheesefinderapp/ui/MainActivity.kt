@@ -74,13 +74,29 @@ class MainActivity : AppCompatActivity() {
         val searchView = searchItem?.actionView as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String): Boolean {
-                cheeseListFragment.filterData(query)
+                cheeseService.searchCheese(query)
+                    .enqueue(object : Callback<List<Cheese>> {
+                        override fun onResponse(
+                            call: Call<List<Cheese>>,
+                            response: Response<List<Cheese>>
+                        ) {
+                            if (!response.body().isNullOrEmpty()) {
+                                response.body()
+                                    ?.let { cheeseListFragment.filterDataWithAPIResponse(it) }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Cheese>>, t: Throwable) {
+                            t.printStackTrace()
+                        }
+                    })
                 return false
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                cheeseListFragment.filterData(newText)
+            override fun onQueryTextChange(query: String): Boolean {
+                cheeseListFragment.filterDataLocally(query)
                 return true
             }
 

@@ -14,6 +14,8 @@ interface CheeseService {
     @GET("cheeses")
     fun getCheeseByID(@Query("id") id: String): Call<List<Cheese>>
 
+    @GET("cheeses/search")
+    fun searchCheese(@Query("fromage") fromage: String): Call<List<Cheese>>
 
     @POST("cheeses")
     fun addCheese(@Body cheese: Cheese): Call<Cheese>

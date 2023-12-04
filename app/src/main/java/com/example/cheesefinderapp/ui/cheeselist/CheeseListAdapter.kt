@@ -30,7 +30,7 @@ class CheeseListAdapter(
         notifyDataSetChanged()
     }
 
-    fun updateData(newList: ArrayList<Cheese>) {
+    fun updateData(newList: List<Cheese>) {
         cheeseCollection.clear()
         cheeseCollection.addAll(newList)
         notifyDataSetChanged()

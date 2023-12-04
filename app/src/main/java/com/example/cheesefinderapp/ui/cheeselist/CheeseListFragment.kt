@@ -52,7 +52,7 @@ class CheeseListFragment : Fragment() {
         return rootView
     }
 
-    fun filterData(query: String) {
+    fun filterDataLocally(query: String) {
         if (query.isEmpty()) {
             adapter.restoreData()
         } else {
@@ -63,6 +63,10 @@ class CheeseListFragment : Fragment() {
 
             adapter.updateData(filteredCheeseCollection!!)
         }
+    }
+
+    fun filterDataWithAPIResponse(query: List<Cheese>) {
+        adapter.updateData(query)
     }
 
     companion object {
