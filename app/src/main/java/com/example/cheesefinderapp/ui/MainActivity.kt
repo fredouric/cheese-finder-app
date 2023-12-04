@@ -43,7 +43,16 @@ class MainActivity : AppCompatActivity() {
                     response: Response<List<Cheese>>
                 ) {
                     response.body()?.forEach {
-                        val cheese = Cheese(it.departement, it.fromage, it.lait, it.geo_point_2d)
+                        val cheese =
+                            Cheese(
+                                it.id,
+                                it.departement,
+                                it.fromage,
+                                it.lait,
+                                it.geo_shape,
+                                it.geo_point_2d,
+                                it.favorite
+                            )
                         cheeseCollection.addCheese(cheese)
                     }
                     cheeseListFragment =
@@ -111,4 +120,8 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
+    }
 }

@@ -40,9 +40,9 @@ class CheeseListFragment : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_cheese_list, container, false)
         recyclerView = rootView.findViewById<RecyclerView>(R.id.fgt_cheese_list_view)
-        adapter = CheeseListAdapter(cheeseCollection!!){ cheese ->
+        adapter = CheeseListAdapter(cheeseCollection!!) { cheese ->
             val intent = Intent(requireContext(), InfoCheeseActivity::class.java)
-            intent.putExtra("cheese", cheese)
+            intent.putExtra("cheeseID", cheese.id)
             startActivity(intent)
         }
         layoutManager = LinearLayoutManager(this.context)

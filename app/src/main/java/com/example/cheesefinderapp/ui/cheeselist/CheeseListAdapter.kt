@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cheesefinderapp.R
 import com.example.cheesefinderapp.model.Cheese
 
-class CheeseListAdapter(private var cheeseCollection: ArrayList<Cheese>, private val onItemClick: (Cheese) -> Unit) :
+class CheeseListAdapter(
+    private var cheeseCollection: ArrayList<Cheese>,
+    private val onItemClick: (Cheese) -> Unit
+) :
 
     RecyclerView.Adapter<CheeseListViewHolder>() {
 
@@ -34,7 +37,7 @@ class CheeseListAdapter(private var cheeseCollection: ArrayList<Cheese>, private
     }
 
     override fun onBindViewHolder(holder: CheeseListViewHolder, position: Int) {
-        val (departement, fromage) = this.cheeseCollection[position]
+        val (id, departement, fromage) = this.cheeseCollection[position]
         val laitString = this.cheeseCollection[position].lait.joinToString(", ")
 
         holder.cheeseNom.text = fromage
