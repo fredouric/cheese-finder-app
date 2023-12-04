@@ -8,14 +8,14 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/am_navigation_bar"
-        app:labelVisibilityMode="unlabeled"
-        android:layout_width="411dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:itemHorizontalTranslationEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu"
+        app:labelVisibilityMode="selected" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/am_fragment_accueil"

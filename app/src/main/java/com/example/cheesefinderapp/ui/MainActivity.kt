@@ -13,7 +13,6 @@ import com.example.cheesefinderapp.ui.about.AboutFragment
 import com.example.cheesefinderapp.ui.cheeselist.CheeseListFragment
 import com.example.cheesefinderapp.ui.maps.MapsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private val cheeseCollection = CheeseCollection()
     private lateinit var cheeseListFragment: CheeseListFragment
     lateinit var cheeseService: CheeseService
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
