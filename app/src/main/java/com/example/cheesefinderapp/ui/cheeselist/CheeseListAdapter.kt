@@ -39,12 +39,17 @@ class CheeseListAdapter(
     }
 
     override fun onBindViewHolder(holder: CheeseListViewHolder, position: Int) {
-        val (id, departement, fromage) = this.cheeseCollection[position]
+        val (id, departement, fromage, listLait, geo_shape, geo_point_2d, favorite) = this.cheeseCollection[position]
         val laitString = this.cheeseCollection[position].lait.joinToString(", ")
 
         holder.cheeseNom.text = fromage
         holder.cheeseLait.text = laitString
         holder.cheeseDepartement.text = departement
+
+        if (favorite)
+            holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_24)
+        else
+            holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_border_24)
 
         holder.itemView.setOnClickListener {
             onItemClick(this.cheeseCollection[position])
@@ -52,6 +57,11 @@ class CheeseListAdapter(
 
         holder.favoriteActionButton.setOnClickListener {
             onActionButtonClick(this.cheeseCollection[position].id)
+
+            if (favorite)
+                holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_24)
+            else
+                holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_border_24)
         }
     }
 }

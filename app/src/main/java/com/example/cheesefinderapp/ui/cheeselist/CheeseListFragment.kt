@@ -65,6 +65,7 @@ class CheeseListFragment : Fragment() {
 
     fun filterDataLocally(query: String) {
         if (query.isEmpty()) {
+            //TODO : fix restore data function do avoid duplicating data
             adapter.restoreData()
         } else {
             filteredCheeseCollection = cheeseCollection?.filter {
@@ -100,7 +101,14 @@ class CheeseListFragment : Fragment() {
                     call: Call<Cheese>,
                     response: Response<Cheese>
                 ) {
-                    println("Response code: ${response.code()}")
+                    response.body()?.let { updatedCheese ->
+                        val updatedList = ArrayList(cheeseCollection)
+                        val position = updatedList.indexOfFirst { it.id == updatedCheese.id }
+                        if (position != -1) {
+                            updatedList[position] = updatedCheese
+                            adapter.updateData(updatedList)
+                        }
+                    }
                 }
 
                 override fun onFailure(call: Call<Cheese>, t: Throwable) {
