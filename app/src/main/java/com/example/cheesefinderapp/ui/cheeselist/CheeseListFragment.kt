@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.cheesefinderapp.R
 import com.example.cheesefinderapp.model.Cheese
 import com.example.cheesefinderapp.model.pojo.UpdateCheeseRequest
@@ -18,8 +19,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_CHEESE_COLLECTION = "param_cheese_collection"
 
 /**
@@ -31,6 +30,7 @@ class CheeseListFragment : Fragment() {
 
     private var cheeseCollection: ArrayList<Cheese>? = null
     private var filteredCheeseCollection: ArrayList<Cheese>? = null
+    private lateinit var rootView: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CheeseListAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -44,7 +44,7 @@ class CheeseListFragment : Fragment() {
                 arguments?.getSerializable(ARG_CHEESE_COLLECTION) as ArrayList<Cheese>
         }
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_cheese_list, container, false)
+        rootView = inflater.inflate(R.layout.fragment_cheese_list, container, false)
         recyclerView = rootView.findViewById<RecyclerView>(R.id.fgt_cheese_list_view)
         adapter = CheeseListAdapter(cheeseCollection!!,
             { cheese ->
@@ -59,6 +59,12 @@ class CheeseListFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
+        //
+        val refreshLayout =
+            rootView.findViewById<SwipeRefreshLayout>(R.id.fgt_cheese_list_swipe_refresh)
+        refreshLayout.setOnRefreshListener {
+            makeGetAllCheesesRequest()
+        }
         exitTransition = MaterialFadeThrough()
         return rootView
     }
@@ -111,6 +117,46 @@ class CheeseListFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<Cheese>, t: Throwable) {
+                    t.printStackTrace()
+                }
+            })
+
+    }
+
+    private fun makeGetAllCheesesRequest() {
+        val cheeseService = (requireActivity() as MainActivity).cheeseService
+        val swipeRefreshLayout =
+            rootView.findViewById<SwipeRefreshLayout>(R.id.fgt_cheese_list_swipe_refresh)
+
+        cheeseService.getAllCheese()
+            .enqueue(object : Callback<List<Cheese>> {
+                override fun onResponse(
+                    call: Call<List<Cheese>>,
+                    response: Response<List<Cheese>>
+                ) {
+
+                    cheeseCollection?.clear()
+                    response.body()?.forEach {
+                        val cheese =
+                            Cheese(
+                                it.id,
+                                it.departement,
+                                it.fromage,
+                                it.lait,
+                                it.geo_shape,
+                                it.geo_point_2d,
+                                it.favorite
+                            )
+                        cheeseCollection?.add(cheese)
+                    }
+                    requireActivity().runOnUiThread {
+                        adapter.updateData(ArrayList(cheeseCollection))
+                        swipeRefreshLayout.isRefreshing = false
+                    }
+
+                }
+
+                override fun onFailure(call: Call<List<Cheese>>, t: Throwable) {
                     t.printStackTrace()
                 }
             })
