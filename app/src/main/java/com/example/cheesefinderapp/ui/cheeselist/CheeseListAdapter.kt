@@ -18,6 +18,7 @@ class CheeseListAdapter(
     private var originalCheeseList: ArrayList<Cheese> = ArrayList(cheeseCollection)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheeseListViewHolder {
+        sortCheesesByFavorite()
         val raw = LayoutInflater.from(parent.context).inflate(R.layout.raw_cheese, parent, false)
         return CheeseListViewHolder(raw, onItemClick, onActionButtonClick)
     }
@@ -26,15 +27,21 @@ class CheeseListAdapter(
         return this.cheeseCollection.size
     }
 
+    private fun sortCheesesByFavorite() {
+        cheeseCollection.sortWith(compareByDescending { it.favorite })
+    }
+
     fun restoreData() {
         cheeseCollection.clear()
         cheeseCollection.addAll(originalCheeseList)
+        sortCheesesByFavorite()
         notifyDataSetChanged()
     }
 
     fun updateData(newList: List<Cheese>) {
         cheeseCollection.clear()
         cheeseCollection.addAll(newList)
+        sortCheesesByFavorite()
         notifyDataSetChanged()
     }
 
