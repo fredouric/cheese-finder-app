@@ -53,7 +53,7 @@ class CheeseListFragment : Fragment() {
                 startActivity(intent)
             },
             { cheeseID ->
-                makeRetrofitCall(cheeseID)
+                makeToggleFavoriteRequest(cheeseID)
             })
         layoutManager = LinearLayoutManager(this.context)
         recyclerView.layoutManager = layoutManager
@@ -90,7 +90,7 @@ class CheeseListFragment : Fragment() {
             }
     }
 
-    private fun makeRetrofitCall(cheeseId: String) {
+    private fun makeToggleFavoriteRequest(cheeseId: String) {
 
         val cheeseService = (requireActivity() as MainActivity).cheeseService
 
