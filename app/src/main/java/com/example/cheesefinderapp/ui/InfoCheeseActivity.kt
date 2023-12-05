@@ -1,5 +1,6 @@
 package com.example.cheesefinderapp.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.widget.TextView
@@ -13,6 +14,9 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
+import com.google.maps.android.data.geojson.GeoJsonLayer
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,7 +50,6 @@ class InfoCheeseActivity : AppCompatActivity(), OnMapReadyCallback {
                     if (!cheeses.isNullOrEmpty()) {
                         cheese = cheeses[0]
                         setInfoCheese(cheese)
-
 
                     }
                     mMapView = findViewById(R.id.aic_map)
@@ -91,5 +94,15 @@ class InfoCheeseActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap.addMarker(MarkerOptions().position(coordinates).title(cheese.fromage))
         googleMap.moveCamera(CameraUpdateFactory.zoomBy(5f))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates))
+
+
+        val gson = Gson()
+        val jsonString = gson.toJson(cheese.geo_shape)
+        val layer = GeoJsonLayer(googleMap, JSONObject(jsonString))
+
+        val polygonStyle = layer.defaultPolygonStyle
+        polygonStyle.fillColor = Color.argb(80, 254, 229, 156)
+
+        layer.addLayerToMap()
     }
 }

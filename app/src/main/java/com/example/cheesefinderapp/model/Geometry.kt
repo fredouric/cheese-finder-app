@@ -3,6 +3,7 @@ package com.example.cheesefinderapp.model
 import java.io.Serializable
 
 data class Geometry(
-    val coordinates: List<List<List<Any>>>
+    val coordinates: List<List<List<Any>>>,
+    val type: String
 ) : Serializable
 
