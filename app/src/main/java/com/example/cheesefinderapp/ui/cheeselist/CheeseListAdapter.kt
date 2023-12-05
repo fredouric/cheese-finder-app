@@ -47,9 +47,9 @@ class CheeseListAdapter(
         holder.cheeseDepartement.text = departement
 
         if (favorite)
-            holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_24)
+            holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_24)
         else
-            holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_border_24)
+            holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_border_24)
 
         holder.itemView.setOnClickListener {
             onItemClick(this.cheeseCollection[position])
@@ -59,9 +59,9 @@ class CheeseListAdapter(
             onActionButtonClick(this.cheeseCollection[position].id)
 
             if (favorite)
-                holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_24)
+                holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_24)
             else
-                holder.favoriteActionButton.setImageResource(R.drawable.baseline_favorite_border_24)
+                holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_border_24)
         }
     }
 }

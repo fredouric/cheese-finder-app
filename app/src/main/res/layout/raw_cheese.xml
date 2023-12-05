@@ -14,7 +14,9 @@
         android:layout_marginTop="16dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="20sp"
+        android:textColor="@color/md_theme_light_onSurface"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:textColor="@color/md_theme_light_onSurfaceVariant"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textSize="14sp"
         android:textStyle="normal"
@@ -42,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:textColor="@color/md_theme_light_onSurfaceVariant"
         android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="16sp"
@@ -53,22 +57,25 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:dividerInsetEnd="16dp"
-        app:dividerInsetStart="16dp"
-        app:dividerColor="@color/black"
+        android:layout_marginTop="16dp"
+        app:dividerColor="@color/md_theme_light_outline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/r_cheese_lait"
+        app:dividerInsetStart="24dp"
+        app:dividerInsetEnd="24dp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/r_cheese_favorite_button"
+        style="?attr/materialIconButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/baseline_favorite_border_24"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,6 @@ class MapsFragment : Fragment() {
         val centreFrance = LatLng(46.606111, 1.875278)
         googleMap.moveCamera(CameraUpdateFactory.zoomBy(3.25f))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(centreFrance))
-
     }
 
     override fun onCreateView(

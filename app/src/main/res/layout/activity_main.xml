@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/md_theme_light_surfaceTint"
     tools:context=".ui.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
