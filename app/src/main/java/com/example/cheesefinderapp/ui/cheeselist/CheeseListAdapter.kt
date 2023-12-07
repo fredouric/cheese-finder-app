@@ -10,9 +10,7 @@ class CheeseListAdapter(
     private var cheeseCollection: ArrayList<Cheese>,
     private val onItemClick: (Cheese) -> Unit,
     private val onActionButtonClick: (String) -> Unit
-
 ) :
-
     RecyclerView.Adapter<CheeseListViewHolder>() {
 
     private var originalCheeseList: ArrayList<Cheese> = ArrayList(cheeseCollection)
@@ -45,30 +43,32 @@ class CheeseListAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: CheeseListViewHolder, position: Int) {
+    private fun setFavoriteIcon(favorite: Boolean, cheeseListViewHolder: CheeseListViewHolder) {
+        if (favorite)
+            cheeseListViewHolder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_24)
+        else
+            cheeseListViewHolder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_border_24)
+
+    }
+
+    override fun onBindViewHolder(cheeseListViewHolder: CheeseListViewHolder, position: Int) {
         val (id, departement, fromage, listLait, geo_shape, geo_point_2d, favorite) = this.cheeseCollection[position]
         val laitString = this.cheeseCollection[position].lait.joinToString(", ")
 
-        holder.cheeseNom.text = fromage
-        holder.cheeseLait.text = laitString
-        holder.cheeseDepartement.text = departement
+        cheeseListViewHolder.cheeseNom.text = fromage
+        cheeseListViewHolder.cheeseLait.text = laitString
+        cheeseListViewHolder.cheeseDepartement.text = departement
 
-        if (favorite)
-            holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_24)
-        else
-            holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_border_24)
+        setFavoriteIcon(favorite, cheeseListViewHolder)
 
-        holder.itemView.setOnClickListener {
+        cheeseListViewHolder.itemView.setOnClickListener {
             onItemClick(this.cheeseCollection[position])
         }
 
-        holder.favoriteActionButton.setOnClickListener {
+        cheeseListViewHolder.favoriteActionButton.setOnClickListener {
             onActionButtonClick(this.cheeseCollection[position].id)
 
-            if (favorite)
-                holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_24)
-            else
-                holder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_border_24)
+            setFavoriteIcon(favorite, cheeseListViewHolder)
         }
     }
 }
