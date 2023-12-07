@@ -54,6 +54,7 @@ class CheeseListAdapter(
     private fun setMilkIcon(lait: String, cheeseListViewHolder: CheeseListViewHolder) {
         when (lait) {
             "Vache" -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.cow)
+            "Vaches" -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.cow)
             "Brebis" -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.ewe)
             "Chèvre" -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.goat)
             else -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.cheese)
