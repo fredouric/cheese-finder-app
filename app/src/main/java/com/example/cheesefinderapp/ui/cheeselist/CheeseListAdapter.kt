@@ -52,14 +52,12 @@ class CheeseListAdapter(
     }
 
     private fun setMilkIcon(lait: String, cheeseListViewHolder: CheeseListViewHolder) {
-        if (lait == "Vache")
-            cheeseListViewHolder.iconLait.setImageResource(R.drawable.cow)
-        else if (lait == "Brebis")
-            cheeseListViewHolder.iconLait.setImageResource(R.drawable.ewe)
-        else if (lait == "Chèvre")
-            cheeseListViewHolder.iconLait.setImageResource(R.drawable.goat)
-        else
-            cheeseListViewHolder.iconLait.setImageResource(R.drawable.cheese)
+        when (lait) {
+            "Vache" -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.cow)
+            "Brebis" -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.ewe)
+            "Chèvre" -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.goat)
+            else -> cheeseListViewHolder.iconLait.setImageResource(R.drawable.cheese)
+        }
     }
 
     override fun onBindViewHolder(cheeseListViewHolder: CheeseListViewHolder, position: Int) {
