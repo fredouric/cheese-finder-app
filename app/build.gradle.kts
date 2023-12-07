@@ -48,6 +48,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.maps.android:android-maps-utils:2.3.0")
     implementation("com.google.code.gson:gson:2.8.9")
+    implementation("androidx.cardview:cardview:1.0.0")
 
 
     testImplementation("junit:junit:4.13.2")
