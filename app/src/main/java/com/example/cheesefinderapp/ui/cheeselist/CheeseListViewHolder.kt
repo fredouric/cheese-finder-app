@@ -1,6 +1,7 @@
 package com.example.cheesefinderapp.ui.cheeselist
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cheesefinderapp.R
@@ -17,4 +18,5 @@ class CheeseListViewHolder(
     var cheeseLait = rootView.findViewById<TextView>(R.id.r_cheese_lait)
     var favoriteActionButton =
         rootView.findViewById<MaterialButton>(R.id.r_cheese_favorite_button)
+    var iconLait = rootView.findViewById<ImageView>(R.id.r_cheese_image)
 }
