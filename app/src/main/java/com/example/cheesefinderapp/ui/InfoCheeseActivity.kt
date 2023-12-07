@@ -1,5 +1,7 @@
 package com.example.cheesefinderapp.ui
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -12,7 +14,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.gson.Gson
 import com.google.maps.android.data.geojson.GeoJsonLayer
@@ -23,10 +27,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class InfoCheeseActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMapView: MapView
     private lateinit var cheese: Cheese
     private lateinit var cheeseService: CheeseService
+    private var customMarker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +97,19 @@ class InfoCheeseActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         val coordinates = LatLng(cheese.geo_point_2d.lat, cheese.geo_point_2d.lon)
-        googleMap.addMarker(MarkerOptions().position(coordinates).title(cheese.fromage))
+
+        //resize cheese marker
+        val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.cheese)
+        val resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, 100, 100, false);
+        val resizedMarkerIcon = BitmapDescriptorFactory.fromBitmap(resizedBitmap);
+
+        //assign cheese marker to coordinates and resizedMarkerIcon
+        customMarker = googleMap.addMarker(
+            MarkerOptions()
+                .position(coordinates)
+                .icon(resizedMarkerIcon)
+        )
+
         googleMap.moveCamera(CameraUpdateFactory.zoomBy(5f))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates))
 
