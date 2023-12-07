@@ -42,16 +42,19 @@ class AboutFragment : Fragment() {
         val licenceTextView: TextView = rootView.findViewById(R.id.fa_license)
 
         appNameTextView.text = "Cheese Finder"
-        nameAuthorTextView.text = " Auteurs : Eva Pinlong & Frédéric Thomas"
-        explanationTextView.text = "Explanation"
-        librariesTextView.text = "Librairies: Retrofit ..."
+        nameAuthorTextView.text = " Authors : Eva Pinlong & Frédéric Thomas"
+        explanationTextView.text =
+            "This application allows users to access a database of French cheeses. \n" +
+                    "They can add cheeses to favorite and localize them on a map. \n" +
+                    "By clicking on a cheese the user gets more details about that cheese : location, milk ..."
+        librariesTextView.text = "Libraries: Retrofit 2, Material design 3, GSON, GoogleMap SDK"
         licenceTextView.text = "Licence : MIT"
 
         hideURL(urlTextView)
     }
 
     private fun hideURL(textView: TextView) {
-        val fullText = "Lien vers les données : Liste des Fromages Français"
+        val fullText = "Dataset : Liste des Fromages Français"
         textView.text = fullText
 
         val clickableStart = fullText.indexOf("Liste des Fromages Français")

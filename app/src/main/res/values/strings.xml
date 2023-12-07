@@ -5,5 +5,12 @@
     <string name="home_button">Home</string>
     <string name="map_button">Map</string>
     <string name="about_button">About</string>
-    <string name="lait">About</string>
+    <string name="lait">lait</string>
+    <string name="authors_name">auteur</string>
+    <string name="URL">URL</string>
+    <string name="explanation">explanation</string>
+    <string name="Librairies">librairies</string>
+    <string name="licenses">licenses</string>
+    <string name="cheese_name">fromage</string>
+    <string name="department">departement</string>
 </resources>
