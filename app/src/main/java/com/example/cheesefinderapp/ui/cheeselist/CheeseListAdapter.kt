@@ -48,7 +48,6 @@ class CheeseListAdapter(
             cheeseListViewHolder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_24)
         else
             cheeseListViewHolder.favoriteActionButton.setIconResource(R.drawable.baseline_favorite_border_24)
-
     }
 
     private fun setMilkIcon(lait: String, cheeseListViewHolder: CheeseListViewHolder) {
