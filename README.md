@@ -16,6 +16,7 @@ Eva Pinlong - Frédéric Thomas
 ## Présentation de l'API
 
 [Dataset fromages français](https://data.opendatasoft.com/api/explore/v2.1/catalog/datasets/fromagescsv-fromagescsv@public/records?limit=20)
+[Typescript API](https://github.com/fredouric/cheese-finder-api)
 
 ## Présentation de l'application
 
@@ -26,6 +27,7 @@ Une barre de recherche permet de filtrer les fromages par nom ou département.
 Cette application propose d'ajouter des fromages en favoris et d'obtenir des détails supplémentaires
 en cliquant sur un fromage de la liste.  
 Le raffraichissement des données s'effectue avec un swipe vers le bas.  
+L'application ne permet pas de rajouter des fromages dans l'API.  
 L'application est compatible en mode nuit.
 
 ## License
