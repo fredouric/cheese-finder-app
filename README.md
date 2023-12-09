@@ -15,7 +15,7 @@ Eva Pinlong - Frédéric Thomas
 
 ## Présentation de l'API
 
-[Dataset fromages français](https://data.opendatasoft.com/api/explore/v2.1/catalog/datasets/fromagescsv-fromagescsv@public/records?limit=20)
+[Dataset fromages français](https://data.opendatasoft.com/api/explore/v2.1/catalog/datasets/fromagescsv-fromagescsv@public/records?limit=20)  
 [Typescript API](https://github.com/fredouric/cheese-finder-api)
 
 ## Présentation de l'application
