@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
                     t.printStackTrace()
                 }
             })
-
         setBottomNavigationBar()
     }
 
@@ -72,6 +71,10 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.top_navigation_menu, menu)
         val searchItem = menu.findItem(R.id.app_bar_search)
         val searchView = searchItem?.actionView as SearchView
+
+
+
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -110,8 +113,15 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.a_menu_item_home -> {
-                    loadFragment(CheeseListFragment.newInstance(cheeseCollection.getArrayList()))
+                    val currentFragment =
+                        supportFragmentManager.findFragmentById(R.id.am_fragment_accueil)
+                    if (currentFragment !is CheeseListFragment) {
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.am_fragment_accueil, cheeseListFragment)
+                            .commit()
+                    }
                     true
+
                 }
 
                 R.id.a_menu_item_map -> {
